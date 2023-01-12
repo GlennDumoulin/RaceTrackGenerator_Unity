@@ -8,6 +8,7 @@ public class MapGenerator : MonoBehaviour
     {
         NOISE_MAP,
         COLOR_MODE,
+        MESH,
     }
 
     [System.Serializable] public struct TerrainType
@@ -29,6 +30,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField, Min(1.0f)] private float _lacunarity = 2;
 
     [SerializeField] private Vector2 _offset = Vector2.zero;
+
+    [SerializeField, Min(1.0f)] private float _meshHeightMultiplier = 10;
+    [SerializeField] private AnimationCurve _meshHeightCurve = null;
 
     [SerializeField] private TerrainType[] _regions = null;
     [SerializeField] private DrawMode _drawMode = DrawMode.NOISE_MAP;
@@ -80,6 +84,12 @@ public class MapGenerator : MonoBehaviour
             case DrawMode.COLOR_MODE:
             {
                 display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, _mapWidth, _mapHeight));
+                break;
+            }
+
+            case DrawMode.MESH:
+            {
+                display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, _meshHeightMultiplier, _meshHeightCurve), TextureGenerator.TextureFromColorMap(colorMap, _mapWidth, _mapHeight));
                 break;
             }
         }
