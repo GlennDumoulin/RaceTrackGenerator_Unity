@@ -11,6 +11,7 @@ public class MapDisplay : MonoBehaviour
     [SerializeField] private GameObject _mesh;
     [SerializeField] private MeshFilter _meshFilter;
     [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private MeshCollider _meshCollider;
 
     public void DrawTexture(Texture2D texture)
     {
@@ -26,8 +27,10 @@ public class MapDisplay : MonoBehaviour
         _map.SetActive(false);
         _mesh.SetActive(true);
 
-        _meshFilter.sharedMesh.Clear();
-        _meshFilter.sharedMesh = meshData.CreateMesh();
+        Mesh mesh = meshData.CreateMesh();
+
+        _meshFilter.sharedMesh = mesh;
+        _meshCollider.sharedMesh = mesh;
         _meshRenderer.sharedMaterial.mainTexture = texture;
     }
 }

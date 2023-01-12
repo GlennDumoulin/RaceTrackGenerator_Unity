@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 791910588}
   - component: {fileID: 791910587}
   - component: {fileID: 791910586}
+  - component: {fileID: 791910589}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -206,6 +207,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &791910589
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791910585}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2039317184}
 --- !u!1 &872717727
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,11 +334,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac52cf7e7625014788076eb7cb0e7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _map: {fileID: 872717727}
   _textureRenderer: {fileID: 872717728}
+  _mesh: {fileID: 791910585}
   _meshFilter: {fileID: 791910587}
   _meshRenderer: {fileID: 791910586}
-  _map: {fileID: 872717727}
-  _mesh: {fileID: 791910585}
+  _meshCollider: {fileID: 791910589}
 --- !u!114 &1096319726
 MonoBehaviour:
   m_ObjectHideFlags: 0

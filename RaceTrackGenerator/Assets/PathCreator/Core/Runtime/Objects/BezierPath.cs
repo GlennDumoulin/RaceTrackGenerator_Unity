@@ -70,6 +70,37 @@ namespace PathCreation {
  IsClosed = isClosed;
         }
 
+        /// <summary> Creates a path from the supplied 3D Track Points </summary>
+        ///<param name="points"> List or array of points to create the path from. </param>
+        ///<param name="normals"> List or array of normals to create the path with. </param>
+        ///<param name="isClosed"> Should the end point connect back to the start point? </param>
+        ///<param name="space"> Determines if the path is in 3d space, or clamped to the xy/xz plane </param>
+        public BezierPath(IEnumerable<Vector3> points, IEnumerable<Vector3> normals, bool isClosed = false, PathSpace space = PathSpace.xyz)
+        {
+            Vector3[] pointsArray = points.ToArray();
+            Vector3[] normalsArray = normals.ToArray();
+
+            if (pointsArray.Length < 2)
+            {
+                Debug.LogError("Path requires at least 2 anchor points.");
+            }
+            else
+            {
+                controlMode = ControlMode.Automatic;
+                this.points = new List<Vector3> { pointsArray[0], Vector3.zero, Vector3.zero, pointsArray[1] };
+                perAnchorNormalsAngle = new List<float>(new float[] { 0, 0 });
+
+                for (int i = 2; i < pointsArray.Length; i++)
+                {
+                    AddSegmentToEnd(pointsArray[i]);
+                    perAnchorNormalsAngle.Add(Vector3.Angle(normalsArray[i], Vector3.up));
+                }
+            }
+
+            this.Space = space;
+            this.IsClosed = isClosed;
+        }
+
         /// <summary> Creates a path from the supplied 3D points </summary>
         ///<param name="points"> List or array of points to create the path from. </param>
         ///<param name="isClosed"> Should the end point connect back to the start point? </param>

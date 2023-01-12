@@ -43,11 +43,13 @@ public class MapGenerator : MonoBehaviour
         get { return _autoUpdate; }
     }
 
+    private void Start()
+    {
+        GenerateMap();
+    }
+
     public void GenerateMap()
     {
-        if (_mapWidth <= 0 || _mapHeight <= 0)
-            Debug.LogError("Invalid map size!");
-
         int currentSeed = (_useRandSeed) ? Random.Range(0, int.MaxValue) : _seed;
 
         float[,] noiseMap = Noise.GenerateNoiseMap(_mapWidth, _mapHeight, currentSeed, _noiseScale, _octaves, _persistance, _lacunarity, _offset);
