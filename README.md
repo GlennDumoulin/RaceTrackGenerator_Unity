@@ -11,6 +11,7 @@ Additionally, the use of **custom editors** in *Unity* allows for **easy customi
 Now before I go into to much detail about this reasearch, I would like to show you what I've achieved by now.
 
 ![TerrainGeneration](/Assets/TerrainGeneration.gif)
+![Track01](https://user-images.githubusercontent.com/55405998/212292317-1ae058c7-f2b8-44f3-a744-940d70dfb294.png)
 
 ## How I did it
 
